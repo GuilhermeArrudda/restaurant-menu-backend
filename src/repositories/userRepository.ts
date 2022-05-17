@@ -1,5 +1,5 @@
 import { prisma } from '../database.js'
-import { ClientData } from '../services/userService.js'
+import { CreateClientData } from '../services/userService.js'
 
 async function findByEmail(email: string) {
 	return prisma.client.findUnique({
@@ -9,7 +9,7 @@ async function findByEmail(email: string) {
 	})
 }
 
-async function insert(createUserData: ClientData) {
+async function insert(createUserData: CreateClientData) {
 	return prisma.client.create({
 		data: createUserData
 	})

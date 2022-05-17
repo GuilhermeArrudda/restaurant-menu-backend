@@ -9,6 +9,15 @@ async function signUp(req: Request, res: Response) {
 	res.sendStatus(201)
 }
 
+async function login(req: Request, res: Response) {
+	const user = req.body
+
+	const token = await userService.login(user)
+
+	res.status(200).send({ token })
+}
+
 export default {
-	signUp
+	signUp,
+	login
 }
