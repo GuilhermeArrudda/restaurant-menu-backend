@@ -10,10 +10,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model primary {
+model client {
   id    Int    @id @default(autoincrement())
-  name  String @unique
+		name 		String
+  email  String @unique
+		password		String
+		shoppingSessions shoppingSession[]
 
+		@@map("clients")
+}
+
+model product {
+	id    Int    @id @default(autoincrement())
+	name		String	@unique
+	price		Int
+	picture		String
+	cartItens	cartItem[]
+
+	@@map("products")
+}
+
+model shoppingSession {
+	id    Int    @id @default(autoincrement())
+	clientId		Int
+	client  client @relation(fields: [clientId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+	total		Int
+	created		DateTime	@default(now())
+	cartItens  cartItem[]
+
+	@@map("shoppingSessions")
+}
+
+model cartItem {
+	id    Int    @id @default(autoincrement())
+	quantity		Int
+	productId		Int
+	shoppingSessionId		Int
+	products		product	@relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cartItem_productId_fkey")
+	shoppingSessions		shoppingSession	@relation(fields: [shoppingSessionId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cartItem_shoppingSessionId_fkey")
+
+@@map("cartItens")
 }
 
 
