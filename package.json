@@ -10,7 +10,8 @@
     "dev:local": "npx nodemon src/server.ts",
     "dev": "npx prisma migrate deploy && npx nodemon src/server.ts",
     "test:migrate": "dotenv -e .env.test npx prisma migrate deploy && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i",
-    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules npx dotenv -e .env.test jest --coverage"
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules npx dotenv -e .env.test jest --coverage",
+				"test:reset": "dotenv -e .env.test npx prisma migrate reset"
   },
   "keywords": [],
   "author": "",
