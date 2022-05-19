@@ -36,7 +36,12 @@ async function getUser(loginData: AuthClientData) {
 	return user
 }
 
+async function findById(id: number) {
+	userRepository.findById(id)
+}
+
 export default {
 	signUp,
-	login
+	login,
+	findById
 }

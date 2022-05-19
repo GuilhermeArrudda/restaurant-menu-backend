@@ -15,7 +15,14 @@ async function insert(createUserData: CreateClientData) {
 	})
 }
 
+async function findById(id: number){
+	return await prisma.client.findFirst({
+		where: { id }
+	})
+}
+
 export default {
 	findByEmail,
-	insert
+	insert,
+	findById
 }
