@@ -5,5 +5,3 @@ node_modules
 coverage
 yarn.lock
 .vscode
-docker-compose.test.yml
-docker-compose.development.yml

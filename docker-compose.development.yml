@@ -1,0 +1,44 @@
+version: "3"
+services:
+  restaurant-menu-postgres:
+    image: postgres:13-alpine
+    container_name: restaurant-menu-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - restaurant-menu-postgres-data:/var/lib/postgresql/data 
+    command: postgres -p ${POSTGRES_PORT}
+
+  restaurant-menu-development:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    container_name: restaurant-menu-development
+    depends_on: 
+      - restaurant-menu-postgres
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '5'
+    working_dir: /usr/src/restaurant-menu
+    command: bash -c "npx prisma generate && npm run dev"
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./src:/usr/src/restaurant-menu/src
+      - ./prisma:/usr/src/restaurant-menu/prisma
+      - ./.env.development:/usr/src/restaurant-menu/.env.development
+      - ./.eslintrc.js:/usr/src/drivent/.eslintrc.js
+      - ./.eslintignore:/usr/src/drivent/.eslintignore
+      - ./tsconfig.json:/usr/src/drivent/tsconfig.json
+    ports:
+      - 5000:5000
+
+volumes:
+  restaurant-menu-postgres-data:
