@@ -1,5 +1,5 @@
 import joi from 'joi'
-import { CreateClientData } from '../services/userService'
+import { CreateClientData } from '@/services/userService'
 
 export const authSchema = joi.object<CreateClientData>({
 	email: joi.string().required(),

@@ -1,0 +1,26 @@
+name: Test
+on:
+  pull_request:
+env:
+  POSTGRES_USERNAME: postgres
+  POSTGRES_PASSWORD: top_secret
+  POSTGRES_HOST: restaurant-menu-postgres-test
+  POSTGRES_PORT: 2345
+  POSTGRES_DB: restaurant-menu-test
+  JWT_SECRET: top_secret
+  DATABASE_URL: postgres://postgres:top_secret@restaurant-menu-postgres-test:2345/restaurant-menu-test?schema=public
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: npm run ci:build
+
+      - name: Test
+        run: npm run ci:test

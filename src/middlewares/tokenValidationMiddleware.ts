@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
-import userService from '../services/userService.js'
-import { unauthorizedError } from '../utils/errorUtils.js'
+import userService from '@/services/userService'
+import { unauthorizedError } from '@/utils/errorUtils'
 
 export async function tokenValidationMiddleware(req: Request, res: Response, next: NextFunction) {
 	const authorization = req.headers.authorization

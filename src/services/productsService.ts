@@ -1,4 +1,4 @@
-import { productsRepository } from '../repositories/productsRepository.js'
+import { productsRepository } from '@/repositories/productsRepository'
 
 async function get() {
 	return productsRepository.findAll()

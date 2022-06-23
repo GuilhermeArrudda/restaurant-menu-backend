@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { cartService, shoppingSessionData } from '../services/cartService.js'
+import { cartService, shoppingSessionData } from '@/services/cartService'
 import jwt from 'jsonwebtoken'
 
 async function insertItem(req: Request, res: Response) {

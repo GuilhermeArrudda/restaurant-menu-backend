@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { cartController } from '../controllers/cartController.js'
-import { tokenValidationMiddleware } from '../middlewares/tokenValidationMiddleware.js'
+import { cartController } from '@/controllers/cartController'
+import { tokenValidationMiddleware } from '@/middlewares/tokenValidationMiddleware'
 
 const cartRouter = Router()
 

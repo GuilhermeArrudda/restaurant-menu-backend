@@ -1,5 +1,5 @@
-import { prisma } from '../database.js'
-import { cartItemData, shoppingSessionData } from '../services/cartService.js'
+import { prisma } from '@/config/database'
+import { cartItemData, shoppingSessionData } from '@/services/cartService'
 
 interface updateCartItem {
 	id: number,

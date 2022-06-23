@@ -1,6 +1,6 @@
 import { cartItem, shoppingSession } from '@prisma/client'
-import { cartRepository } from '../repositories/cartRepositories.js'
-import { notFoundError, unauthorizedError } from '../utils/errorUtils.js'
+import { cartRepository } from '@/repositories/cartRepositories'
+import { notFoundError, unauthorizedError } from '@/utils/errorUtils'
 
 export type cartItemData = Omit<cartItem, 'id'>
 export type shoppingSessionData = Omit<shoppingSession, 'id'>
