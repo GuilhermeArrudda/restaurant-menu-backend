@@ -1,4 +1,4 @@
-import { prisma } from '../database.js'
+import { prisma } from '@/config/database'
 
 async function findAll() {
 	return prisma.product.findMany()

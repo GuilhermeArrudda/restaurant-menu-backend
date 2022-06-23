@@ -1,5 +1,5 @@
-import { prisma } from '../database.js'
-import { CreateClientData } from '../services/userService.js'
+import { prisma } from '@/config/database'
+import { CreateClientData } from '@/services/userService'
 
 async function findByEmail(email: string) {
 	return prisma.client.findUnique({

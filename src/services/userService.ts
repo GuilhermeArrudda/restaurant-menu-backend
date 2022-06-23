@@ -1,6 +1,6 @@
 import { client } from '@prisma/client'
-import userRepository from '../repositories/userRepository.js'
-import { conflictError, unauthorizedError } from '../utils/errorUtils.js'
+import userRepository from '@/repositories/userRepository'
+import { conflictError, unauthorizedError } from '@/utils/errorUtils'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 

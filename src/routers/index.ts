@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import cartRouter from './cartRouter.js'
-import productsRouter from './productsRouter.js'
-import userRouter from './userRouter.js'
+import cartRouter from './cartRouter'
+import productsRouter from './productsRouter'
+import userRouter from './userRouter'
 
 
 const router = Router()

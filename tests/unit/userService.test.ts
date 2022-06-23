@@ -1,9 +1,9 @@
 import { jest } from '@jest/globals'
-import userRepository from '../../src/repositories/userRepository.js'
-import userService, { AuthClientData, CreateClientData } from '../../src/services/userService.js'
-import { conflictError, unauthorizedError } from '../../src/utils/errorUtils'
+import userRepository from '@/repositories/userRepository'
+import userService, { AuthClientData, CreateClientData } from '@/services/userService'
+import { conflictError, unauthorizedError } from '@/utils/errorUtils'
 import faker from '@faker-js/faker'
-import { userBodyFactory } from '../factories/userBodyFactory.js'
+import { userBodyFactory } from '../factories/userBodyFactory'
 import bcrypt from 'bcrypt'
 
 

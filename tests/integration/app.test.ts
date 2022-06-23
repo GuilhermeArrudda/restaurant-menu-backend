@@ -1,15 +1,20 @@
 import supertest from 'supertest'
-import app from '../../src/app.js'
-import { prisma } from '../../src/database.js'
-import { CreateClientData } from '../../src/services/userService.js'
-import { tokenFactory } from '../factories/tokenFactory.js'
-import { userBodyFactory } from '../factories/userBodyFactory.js'
-import { userFactory } from '../factories/userFactory.js'
+import app, { init } from '@/app'
+import { prisma } from '@/config/database'
+import { CreateClientData } from '@/services/userService'
+import { tokenFactory } from '../factories/tokenFactory'
+import { userBodyFactory } from '../factories/userBodyFactory'
+import { userFactory } from '../factories/userFactory'
+import { cleanDb } from '../helpers'
+
+beforeEach(async () => {
+	await init()
+	await cleanDb()
+})
+
+afterAll(disconnect)
 
 describe('POST /sign-up', () => {
-	beforeEach(deleteAll)
-
-	afterAll(disconnect)
 
 	it('should persist the client given a valid body', async () => {
 		const client: CreateClientData = userBodyFactory
@@ -27,9 +32,6 @@ describe('POST /sign-up', () => {
 })
 
 describe('POST /login', () => {
-	beforeEach(deleteAll)
-
-	afterAll(disconnect)
 
 	it('should return status 200 and credentials given a valid body', async () => {
 		const client: CreateClientData = userBodyFactory
@@ -43,11 +45,8 @@ describe('POST /login', () => {
 })
 
 describe('POST /logout', () => {
-	beforeEach(deleteAll)
-
-	afterAll(disconnect)
 	
-	it('should terun status 200 given a valid token', async () => {
+	it('should return status 200 given a valid token', async () => {
 		const token = await tokenFactory()
 
 		const result = await supertest(app).post('/logout').set('Authorization', `Bearer ${token}`)
@@ -55,10 +54,6 @@ describe('POST /logout', () => {
 		expect(result.status).toEqual(200)
 	})
 })
-
-async function deleteAll () {
-	await prisma.$executeRaw`TRUNCATE TABLE clients CASCADE`
-}
 
 async function disconnect() {
 	await prisma.$disconnect()

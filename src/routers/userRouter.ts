@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import userController from '../controllers/userController.js'
-import { tokenValidationMiddleware } from '../middlewares/tokenValidationMiddleware.js'
-import { validateSchemaMiddleware } from '../middlewares/validateSchemaMiddleware.js'
-import { authSchema, signUp } from '../schemas/userSchema.js'
+import userController from '@/controllers/userController'
+import { tokenValidationMiddleware } from '@/middlewares/tokenValidationMiddleware'
+import { validateSchemaMiddleware } from '@/middlewares/validateSchemaMiddleware'
+import { authSchema, signUp } from '@/schemas/userSchema'
 
 const userRouter = Router()
 
